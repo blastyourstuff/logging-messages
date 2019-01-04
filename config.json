@@ -1,0 +1,11 @@
+{
+    "token": "токен_бота",
+    "logging_channel_id": "id_канала",
+    "presence": {
+        "game_name": "Discord",
+        "type": 1,
+        "status": "online",
+        "game_url": "https://www.twitch.tv/blastyourstuff"
+    },
+    "ignore_bots": true
+}
