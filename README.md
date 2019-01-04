@@ -17,11 +17,11 @@ npm install
     "token": "токен_бота",
     "logging_channel_id": "id_канала",
     "presence": {
-        "game_name": "Discord", // Название игры
-        "type": 0, // 0 - "Играет в", 1 - "Стримит", 2 - "Слушает", 3 - "Смотрит"
-        "status": "online", // online, idle, dnd, offline
-        "game_url": "https://www.twitch.tv/blastyourstuff" // Работает только с type: 1
+        "game_name": "Discord",
+        "type": 0,
+        "status": "online",
+        "game_url": "https://www.twitch.tv/blastyourstuff"
     },
-    "ignore_bots": true // Если установить false, то бот будет реагировать на других ботов
+    "ignore_bots": true
 }
 ```
