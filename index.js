@@ -24,8 +24,8 @@ bot.on("messageUpdate", async (oldmsg, newmsg) => {
             .setColor(0xE19517)
         await log_channel.send(embed)
     } catch (err) {
-        if (['DiscordAPIError: Missing Access', 'DiscordAPIError: Missing Permissions'].some(e => e == err)) console.log(`There are no required permissions in channel ${log_channel.name}`)
-        else console.log('An unexpected error has occurred', err)
+        if (['DiscordAPIError: Missing Access', 'DiscordAPIError: Missing Permissions'].some(e => e == err)) console.log(`[Missing Permissions]: There are no required permissions in channel ${log_channel.name}`)
+        else console.log('[Error]: An unexpected error has occurred', err)
     }
 })
 
@@ -49,8 +49,110 @@ bot.on("messageDelete", async message => {
             .setColor(0xF04747)
         await log_channel.send(embed)
     } catch (err) {
-        if (['DiscordAPIError: Missing Access', 'DiscordAPIError: Missing Permissions'].some(e => e == err)) console.log(`There are no required permissions in channel ${log_channel.name}`)
-        else console.log('An unexpected error has occurred', err)
+        if (['DiscordAPIError: Missing Access', 'DiscordAPIError: Missing Permissions'].some(e => e == err)) console.log(`[Missing Permissions]: There are no required permissions in channel ${log_channel.name}`)
+        else console.log('[Error]: An unexpected error has occurred', err)
+    }
+})
+
+bot.on("guildMemberAdd", async member => {
+    if (member.user.bot && config.ignore_bots) return
+
+    let log_channel = member.guild.channels.get(config.logging_channel_id)
+    if (!log_channel) return console.log('Logging channel not installed, or wrong ID is specified')
+
+    try {
+        let embed = new Discord.RichEmbed()
+            .setTitle(member.user.bot ? 'Бот добавлен' : 'Участник присоединился')
+            .setDescription(`${member.user.username}#${member.user.discriminator} (${member})`)
+            .addField('Участников', member.guild.memberCount, true)
+            .addBlankField(true)
+            .setFooter(`ID Участника: ${member.id}`)
+            .setTimestamp()
+            .setColor(0x43B581)
+        await log_channel.send(embed)
+    } catch (err) {
+        if (['DiscordAPIError: Missing Access', 'DiscordAPIError: Missing Permissions'].some(e => e == err)) console.log(`[Missing Permissions]: There are no required permissions in channel ${log_channel.name}`)
+        else console.log('[Error]: An unexpected error has occurred', err)
+    }
+})
+
+bot.on("guildMemberRemove", async member => {
+    if (member.user.bot && config.ignore_bots) return
+
+    let log_channel = member.guild.channels.get(config.logging_channel_id)
+    if (!log_channel) return console.log('Logging channel not installed, or wrong ID is specified')
+
+    try {
+        let embed = new Discord.RichEmbed()
+            .setTitle(member.user.bot ? 'Бот добавлен' : 'Участник присоединился')
+            .setDescription(`${member.user.username}#${member.user.discriminator} (${member})`)
+            .addField('Участников', member.guild.memberCount, true)
+            .addBlankField(true)
+            .setFooter(`ID Участника: ${member.id}`)
+            .setTimestamp()
+            .setColor(0xF04747)
+        await log_channel.send(embed)
+    } catch (err) {
+        if (['DiscordAPIError: Missing Access', 'DiscordAPIError: Missing Permissions'].some(e => e == err)) console.log(`[Missing Permissions]: There are no required permissions in channel ${log_channel.name}`)
+        else console.log('[Error]: An unexpected error has occurred', err)
+    }
+})
+
+bot.on("guildMemberUpdate", async (before, after) => {
+    if (before.user.bot && config.ignore_bots) return
+
+    let log_channel = before.guild.channels.get(config.logging_channel_id)
+    if (!log_channel) return console.log('Logging channel not installed, or wrong ID is specified')
+
+    if (before.nickname != after.nickname) {
+        try {
+            let embed = new Discord.RichEmbed()
+                .setTitle('Никнейм изменен')
+                .setDescription(`Участник ${before}`)
+                .addField('Раньше', before.nickname ? before.nickname : '?', true)
+                .addField('Сейчас', after.nickname ? after.nickname : '?', true)
+                .setFooter(`ID Участника: ${before.id}`)
+                .setTimestamp()
+                .setColor(0xE19517)
+            await log_channel.send(embed)
+        } catch (err) {
+            if (['DiscordAPIError: Missing Access', 'DiscordAPIError: Missing Permissions'].some(e => e == err)) console.log(`[Missing Permissions]: There are no required permissions in channel ${log_channel.name}`)
+            else console.log('[Error]: An unexpected error has occurred', err)
+        }
+    }
+
+    if (before.roles.size < after.roles.size) {
+        try {
+            let embed = new Discord.RichEmbed()
+                .setTitle('Роль выдана')
+                .setDescription(`Участник ${before}`)
+                .addField('Ролей', after.roles.size, true)
+                .addBlankField(true)
+                .setFooter(`ID Участника: ${before.id}`)
+                .setTimestamp()
+                .setColor(0x43B581)
+            await log_channel.send(embed)
+        } catch (err) {
+            if (['DiscordAPIError: Missing Access', 'DiscordAPIError: Missing Permissions'].some(e => e == err)) console.log(`[Missing Permissions]: There are no required permissions in channel ${log_channel.name}`)
+            else console.log('[Error]: An unexpected error has occurred', err)
+        }
+    }
+
+    if (before.roles.size > after.roles.size) {
+        try {
+            let embed = new Discord.RichEmbed()
+                .setTitle('Роль убрана')
+                .setDescription(`Участник ${before}`)
+                .addField('Ролей', after.roles.size, true)
+                .addBlankField(true)
+                .setFooter(`ID Участника: ${before.id}`)
+                .setTimestamp()
+                .setColor(0xF04747)
+            await log_channel.send(embed)
+        } catch (err) {
+            if (['DiscordAPIError: Missing Access', 'DiscordAPIError: Missing Permissions'].some(e => e == err)) console.log(`[Missing Permissions]: There are no required permissions in channel ${log_channel.name}`)
+            else console.log('[Error]: An unexpected error has occurred', err)
+        }
     }
 })
 

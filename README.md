@@ -1,12 +1,13 @@
-# Логирование сообщений
-Простой способ логирования сообщений в Discord
-[<img src="https://discordapp.com/api/guilds/338202622731485185/widget.png?style=shield">](https://discord.gg/bNsgNjC)
+# Логирование событий
+Простой способ логирования событий в Discord
+
+[<img src="https://discordapp.com/api/guilds/338202622731485185/widget.png?style=shield">](https://discord.gg/UYYhhDq)
 
 # Установка
 
 ```
-git clone https://github.com/blastyourstuff/logging-messages.git
-cd logging-messages
+git clone https://github.com/blastyourstuff/logging.djs
+cd logging.djs
 npm install
 ```
 

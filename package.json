@@ -1,21 +1,21 @@
 {
-  "name": "logging-messages",
-  "version": "1.0.0",
-  "description": "Простой способ логирования сообщений в Discord",
+  "name": "logging.djs",
+  "version": "1.1.0",
+  "description": "Простой способ логирования событий в Discord",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/blastyourstuff/logging-messages.git"
+    "url": "git+https://github.com/blastyourstuff/logging.djs.git"
   },
   "author": "Daniyar Kurmangaliiev",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/blastyourstuff/logging-messages/issues"
+    "url": "https://github.com/blastyourstuff/logging.djs/issues"
   },
-  "homepage": "https://github.com/blastyourstuff/logging-messages#readme",
+  "homepage": "https://github.com/blastyourstuff/logging.djs#readme",
   "dependencies": {
     "discord.js": "^11.4.2"
   }
