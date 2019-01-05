@@ -6,7 +6,7 @@
 # Установка
 
 ```
-git clone https://github.com/blastyourstuff/logging.djs
+git clone https://github.com/blastyourstuff/logging.djs.git
 cd logging.djs
 npm install
 ```
